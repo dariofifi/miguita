@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mein Countdown</title>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #countdown {
+            text-align: center;
+            font-size: 3em;
+            border: 2px solid white;
+            border-radius: 50%;
+            padding: 50px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown"></div>
+    <script>
+        var countDownDate = new Date("Oct 27, 2023 21:59:59").getTime();
+
+        var countdownfunction = setInterval(function() {
+
+            var now = new Date().getTime();
+            
+            var distance = countDownDate - now;
+            
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+            
+            if (distance < 0) {
+                clearInterval(countdownfunction);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
